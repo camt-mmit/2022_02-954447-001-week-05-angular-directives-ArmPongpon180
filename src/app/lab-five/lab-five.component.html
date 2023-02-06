@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab-05</title>
+</head>
+
+<body>
+    <h1>LAB 05</h1>
+    <button type="button" (click)="addSection()">Section</button>
+    <section *ngFor="let section of sections; let i = index">
+        <button type="button" (click)="addInput(section)">Add</button>
+        <br />
+        <div *ngFor="let input of section; let j = index">
+            <input #elem type="number" [value]="input.value" (change)="onChange(section, j, elem.valueAsNumber)" />
+            <button type="button" (click)="removeInput(section, j)" [disabled]="section.length === 1">
+                X
+            </button>
+        </div>
+        <output >{{ getResult(section) }}</output>
+        <br>
+        <button type="button" (click)="removeSection(i)" [disabled]="sections.length === 1">remove</button>
+    </section>
+</body>
+
+</html>
